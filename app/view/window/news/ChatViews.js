@@ -132,7 +132,9 @@ export default class ChatViews extends Component {
     }
 
     render() {
-        return (<View style={{flex: 1, backgroundColor: '#f9f9f9'}}>
+        return (
+            <View style={{flex: 1, backgroundColor: '#f9f9f9'}}>
+            <Text style={{fontSize:16}}>zhonghua</Text>
             {type === 1 ?
                 <ComonModal style={{position: 'absolute', zIndex: 1000,}}
                             navigation={navigation}/> :

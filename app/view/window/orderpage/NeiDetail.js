@@ -108,19 +108,17 @@ constructor(props){
                      <TouchableOpacity style={styles.da} onPress={()=>{
                          this.props.navigation.navigate('RefuseOrder',{data:list})
                      }}>
-                         <Image style={[styles.da,{marginLeft:10}]} source={require('../../../img/window/ashanchu.png')}>
-                             <Text style={styles.text} onPress={()=>{
+                              <Text style={styles.text} onPress={()=>{
                                  this.props.navigation.navigate('RefuseOrder',{data:list})
                              }}>申请拒单</Text>
-                         </Image>
+
                      </TouchableOpacity>
 
                      <TouchableOpacity style={styles.da} onPress={()=>{
                          this.shouli()
                      }}>
-                         <Image style={[styles.da,{marginRight:10}]} source={require('../../../img/window/ashanchu.png')}>
-                             <Text style={styles.text} onPress={this.shouli.bind(this)}>受理订单</Text>
-                         </Image>
+                            <Text style={styles.text} onPress={this.shouli.bind(this)}>受理订单</Text>
+
                      </TouchableOpacity>
                  </View>
 
@@ -374,16 +372,6 @@ const styles=StyleSheet.create({
         marginTop:25,
         justifyContent:'space-between'
     },
-    text:{
-        // width:40,
-        // height:20,
-        fontSize:14,
-        // marginLeft:30,30
-        // backgroundColor:'white',
-        // marginRight:30,
-        color:'#FF305E'
-
-    },
     heng:{
         width:Contants.Screen.width,
         height:1,
@@ -442,7 +430,19 @@ const styles=StyleSheet.create({
     da:{
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor:'white',
+        marginRight:10,
+        marginLeft:10,
+        width:(Contants.Screen.width-40)/2,
+        height:35,
+        borderRadius:5,
+        borderColor:'red',
+        borderWidth:1
 
+    },
+    text:{
+        fontSize:16,
+        color:'#FF305E'
     },
     dao:{
         fontSize:14,

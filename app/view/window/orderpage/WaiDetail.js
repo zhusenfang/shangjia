@@ -108,19 +108,16 @@ constructor(props){
                      <TouchableOpacity style={styles.da} onPress={()=>{
                          this.props.navigation.navigate('RefuseOrder',{data:list})
                      }}>
-                         <Image style={[styles.da,{marginLeft:10}]} source={require('../../../img/window/ashanchu.png')}>
                              <Text style={styles.text} onPress={()=>{
                                  this.props.navigation.navigate('RefuseOrder',{data:list})
-                             }}>申请拒单</Text>
-                         </Image>
+                             }}>申请拒单2</Text>
+
                      </TouchableOpacity>
 
                      <TouchableOpacity style={styles.da} onPress={()=>{
                          this.shouli()
                      }}>
-                         <Image style={[styles.da,{marginRight:10}]} source={require('../../../img/window/ashanchu.png')}>
                              <Text style={styles.text} onPress={this.shouli.bind(this)}>受理订单</Text>
-                         </Image>
                      </TouchableOpacity>
                  </View>
 
@@ -422,17 +419,7 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         width:Contants.Screen.width,
         marginTop:25,
-        justifyContent:'space-between'
-    },
-    text:{
-        // width:40,
-        // height:20,
-        fontSize:14,
-        // marginLeft:30,30
-        // backgroundColor:'white',
-        // marginRight:30,
-        color:'#FF305E'
-
+        justifyContent:'center'
     },
     heng:{
         width:Contants.Screen.width,
@@ -489,11 +476,6 @@ const styles=StyleSheet.create({
         backgroundColor:'white',
         marginTop:20
     },
-    da:{
-        justifyContent:'center',
-        alignItems:'center',
-
-    },
     dao:{
         fontSize:14,
         color:'#459CF4'
@@ -508,4 +490,29 @@ const styles=StyleSheet.create({
         alignItems:'center',
         height:46,
         backgroundColor:'#FFFFFF'
-    }})
+    },
+
+
+
+    da:{
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'white',
+        marginRight:10,
+        marginLeft:10,
+        width:(Contants.Screen.width-40)/2,
+        height:35,
+        borderRadius:5,
+        borderColor:'red',
+        borderWidth:1
+
+    },
+    text:{
+        fontSize:16,
+        color:'#FF305E'
+    },
+
+
+
+
+})

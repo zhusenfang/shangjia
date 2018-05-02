@@ -29,7 +29,7 @@ export default class NewsWornView extends Component{
         super(props)
         this.state={
             falseSwitchIsOn:false,
-            newsworn:false,
+            newsworn:true,
             shenyin:false,
             zhendong:false
         }
@@ -37,7 +37,7 @@ export default class NewsWornView extends Component{
     componentDidMount() {
         if(Platform.OS==='android'){
             BackHandler.addEventListener('hardwareBackPress', this._androidBack);}
-       LoginModule.initNotificationSetting()
+            //LoginModule.initNotificationSetting()
         this.subscription=  DeviceEventEmitter.addListener('event',this.onResult)
     }
     _androidBack = () => {
@@ -100,85 +100,108 @@ export default class NewsWornView extends Component{
         return(<View style={comstyle.con}>
             <View style={[comstyle.item,{marginTop:20}]}>
                 <Text style={styles.jinzhi}>勿扰模式</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({falseSwitchIsOn:value})
-                        if(this.state.falseSwitchIsOn==false){
-                           LoginModule.silentMode(true)
-                        }else {
-                           LoginModule.silentMode(false)
-                        }
-                    }}
-                    value={this.state.falseSwitchIsOn}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ falseSwitchIsOn:!this.state.falseSwitchIsOn })
+                    if(this.state.falseSwitchIsOn==false){
+                        //LoginModule.silentMode(true)
+                    }else {
+                        //LoginModule.silentMode(false)
+                    }
+                }}>
+                    <Image  source={ this.state.falseSwitchIsOn? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+                {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({falseSwitchIsOn:value})*/}
+                        {/*if(this.state.falseSwitchIsOn==false){*/}
+                           {/*LoginModule.silentMode(true)*/}
+                        {/*}else {*/}
+                           {/*LoginModule.silentMode(false)*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.falseSwitchIsOn}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                {/*/>*/}
             </View>
             <View style={comstyle.heng}/>
             <View style={[comstyle.item,{marginTop:6}]}>
                 <Text style={styles.jinzhi}>接收新消息通知</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({newsworn:value})
-                        if(this.state.newsworn==false){
-                           LoginModule.recNewMsg(true)
-                        }else {
-                            LoginModule.recNewMsg(false)
-                        }
-                    }}
-                    value={this.state.newsworn}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ newsworn:!this.state.newsworn })
+                    if(this.state.newsworn==false){
+                        //LoginModule.recNewMsg(true)
+                    }else {
+                        //LoginModule.recNewMsg(false)
+                    }
+                }}>
+                    <Image  source={ this.state.newsworn? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
             </View>
             <View style={comstyle.heng}/>
+
+            <View style={[comstyle.item,{marginTop:6}]}>
+                <Text style={styles.jinzhi}>通知显示消息详情</Text>
+
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ newsworn:!this.state.newsworn })
+                    if(this.state.newsworn==false){
+                        //LoginModule.recNewMsg(true)
+                    }else {
+                        //LoginModule.recNewMsg(false)
+                    }
+                }}>
+                    <Image  source={ this.state.newsworn? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+            </View>
+            <View style={comstyle.heng}/>
+
 
             {this.state.newsworn==true?
                 <View>
             <View style={[comstyle.item,{marginTop:6}]}>
                 <Text style={styles.jinzhi}>声  音</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({shenyin:value})
-                        if(this.state.shenyin==false){
-                           LoginModule.notifySound(true)
-                        }else {
-                           LoginModule.notifySound(false)
-                        }
-                    }}
-                    value={this.state.shenyin}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ shenyin:!this.state.shenyin })
+                    if(this.state.shenyin==false){
+                        //LoginModule.notifySound(true)
+                    }else {
+                        //LoginModule.notifySound(false)
+                    }
+                }}>
+                    <Image  source={ this.state.shenyin? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+
             </View>
             <View style={comstyle.heng}/>
             <View style={[comstyle.item,{marginTop:6}]}>
-                <Text style={styles.jinzhi}>震动</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({zhendong:value})
-                        if(this.state.zhendong==false){
-                           LoginModule.notifyVibrate(true)
-                        }else {
-                            LoginModule.notifyVibrate(false)
-                        }
-                    }}
-                    value={this.state.zhendong}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
+                <Text style={styles.jinzhi}>震  动</Text>
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ zhendong:!this.state.zhendong })
+                    if(this.state.zhendong==false){
+                        //LoginModule.notifyVibrate(true)
+                    }else {
+                        //LoginModule.notifyVibrate(false)
+                    }
+                }}>
+                    <Image  source={ this.state.zhendong? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+
             </View>
               <View style={comstyle.heng}/></View>
                 :<View/>}

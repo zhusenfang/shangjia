@@ -133,6 +133,7 @@ export default class QuicklyInput extends Component {
                  goodsweizims:result.data.description,
                   foodImageDoss:result.data.foodImageDos,
                  dataSourceImage:this.state.dataSourceImage.cloneWithRows(result.data.foodImageDos),
+                 ceshiguigelist:result.data.foodImageDos,
                  goosfenlei:result.data.foodGroup[0].groupName,
                  foodSkus:result.data.foodSkus,
                  // dataSource:this.state.dataSource.cloneWithRows(result.data.foodSkus),
@@ -261,13 +262,26 @@ export default class QuicklyInput extends Component {
                     <Image source={require('../../../img/window/shangjia.png')} style={comstyle.maleft}/>
                     <Text style={[comstyle.mesg,comstyle.text]}>是否上架</Text>
                 </View>
-                <Switch onValueChange={(value)=>this.setState({falseSwitchIsOn:value})}
-                        style={{marginRight:20}}
-                        value={this.state.falseSwitchIsOn}
-                        onTintColor='#FF305E'
-                    // // tintColor='blue'
-                        thumbTintColor='white'
-                />
+
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({
+                        falseSwitchIsOn:!this.state.falseSwitchIsOn
+                    })
+                }}>
+                    <Image  source={ this.state.falseSwitchIsOn? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+
+                {/*<Switch onValueChange={(value)=>this.setState({falseSwitchIsOn:value})}*/}
+                        {/*style={{marginRight:20}}*/}
+                        {/*value={this.state.falseSwitchIsOn}*/}
+                        {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                        {/*thumbTintColor='white'*/}
+                {/*/>*/}
+
+
             </View>
 
             <View style={[comstyle.item,{marginTop:10}]}>
@@ -713,10 +727,14 @@ export default class QuicklyInput extends Component {
         //    imguri:rowData.imgUrl
         // })
        // alert(this.state.imguri)
-        return(<View  style={{flexDirection:'row',flexWrap:'wrap'}}>
+        return(
+
+            <View  style={{flexDirection:'row',flexWrap:'wrap'}}>
             {/*<Text>{rowData.id}</Text>*/}
+            <TouchableOpacity onPress={()=>{this.galleImg()}}>
             <Image source={{uri:rowData.imgUrl}} style={styles.rowimage}/>
             {/*<Text>{rowData}</Text>*/}
+            </TouchableOpacity>
         </View>)
     }
     //图片选择
@@ -833,6 +851,20 @@ export default class QuicklyInput extends Component {
           }
       })
     }
+
+
+    galleImg()
+    {
+        let items=[];
+        this.state.ceshiguigelist.map((item,index)=>{
+            items.push({"source":{uri:item.imgUrl}})
+
+        })
+        //alert(JSON.stringify(result));
+
+        //alert(JSON.stringify(items));
+        this.props.navigation.navigate('GallyImage',{data:items})
+    }
 }
 const styles=StyleSheet.create({
     mesg:{
@@ -849,11 +881,13 @@ const styles=StyleSheet.create({
     },
     input:{
         width:Contants.Screen.width/2+50,
-        color:'black',
+        color:'#282828',
+        height:40,
         borderColor:'#E7E7E7',
         borderWidth:1,
-        height:40,
-        borderRadius:5
+        borderRadius:5,
+        paddingLeft:10,
+
 
     },miaosu:{
         borderColor:'#E5E5E5',

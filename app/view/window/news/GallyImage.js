@@ -38,7 +38,7 @@ import Toast from "react-native-easy-toast";
 //     {source:{uri:'http://122.112.196.52:8080/fileService/uploads/2018/04/23/15244883979111_thum.jpg'}},
 //
 // ]
-export default class CeShiImage extends Component{
+export default class GallyImage extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -83,12 +83,19 @@ export default class CeShiImage extends Component{
             <View style={[styles.titleView]}>
                 <View style={comstyle.rightview}>
                     <View  style={styles.hua}>
-                <Text style={styles.title}>{this.state.page+1}/{index}</Text>
+                        <Text style={styles.title}>{this.state.page+1}/{index}</Text>
                     </View>
+
                 </View>
-                <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
-                <Image source={require('../../../img/page/arrow.png')} style={styles.arr}/>
-                </TouchableOpacity>
+                <View style={{  flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+                    <TouchableOpacity  style={styles.huac}>
+                        <Text style={styles.title}>删除</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+                    <Image source={require('../../../img/page/arrow.png')} style={styles.arr}/>
+                    </TouchableOpacity>
+                </View>
             </View>
             <Gallery
                 style={{flex:1,backgroundColor:'transparent'}}
@@ -162,6 +169,16 @@ const styles=StyleSheet.create({
     },
     arr:{
         marginRight:20
-    }
+    },
+    huac:{
+        alignItems:'center',
+        justifyContent:'center',
+        width:45,
+        height:45,
+        borderRadius:22.5,
+        backgroundColor:'#FFFFFF',
+        opacity:0.7,
+        marginRight:20
+    },
 
 })

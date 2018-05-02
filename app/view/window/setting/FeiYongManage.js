@@ -51,14 +51,14 @@ export default class FeiYongManage extends Component{
             peisongshangtoux:'',//配送商头像
             dizengjiage:'',//递增价格
             result:"",
-            peisongfei:'',//配送费
-            qibug:'',
-            qibub:'',
+            peisongfei:'5',//配送费
+            qibug:'5',
+            qibub:'5',
             pssname:"",
             list:'',
             fe:'',
-            qisong:'',
-            all:'',
+            qisong:'6',
+            all:'2',
             img:'',
             renjun:'',
             yu:'',
@@ -91,17 +91,18 @@ export default class FeiYongManage extends Component{
             BackHandler.addEventListener('hardwareBackPress', this._androidBack);}
         //总的获得费用管理的接口
     postFetch(API.GuanLi,null,(result)=>{
-       // alert(JSON.stringify(result))
+        //alert(JSON.stringify(result))
         if(result.status==1){
             if(result.data.expressageMerchantDo!=undefined){
                 this.setState({
                     fe:result.data.expressageMerchantDo.name,
-                    img:result.data.expressageMerchantDo.imgUrl,
-                    qisong:result.data.expressageMerchantDo.expressageDeliveryCost.startingPrice,
-                    qibug:result.data.expressageMerchantDo.expressageDeliveryCost.startings,
-                    dizengjiage:result.data.expressageMerchantDo.expressageDeliveryCost.increasePrice,
+                    img:'http://122.112.196.52:8080/fileService/uploads/2018/04/23/15244883979111_thum.jpg',//result.data.expressageMerchantDo.imgUrl,
+                    // qisong:result.data.expressageMerchantDo.expressageDeliveryCost.startingPrice,
+                    // qibug:result.data.expressageMerchantDo.expressageDeliveryCost.startings,
+                    // dizengjiage:result.data.expressageMerchantDo.expressageDeliveryCost.increasePrice,
                 })
             }
+
             this.setState({
 
                 list:result.data,
@@ -192,37 +193,66 @@ export default class FeiYongManage extends Component{
             </View>)
         }
 
-        return(<ScrollView style={[comstyle.contain,{backgroundColor:"#f9f9f9"}]}>
+        return(
+
+            <ScrollView style={[comstyle.contain,{backgroundColor:"#f9f9f9"}]}>
             <Text style={styles.shes}>外送设置</Text>
 
             <View style={comstyle.item}>
               <Text style={[comstyle.maleft,comstyle.text]}>开启配送</Text>
-                <Switch onValueChange={(value)=>
-                {this.setState({falseSwitchIsOn:value})
-                if(this.state.falseSwitchIsOn==false){
-                 postFetch(API.FeiYongReset,{takeOutSwitch:"1",allofee:{id:this.state.allfeeid}
-                 },(result)=>{
-                     // alert(JSON.stringify(result))
-                     if(result.status==1){
-                         this._toast.show('开启成功')
-                     }
-                 })
-                }else {
-                    postFetch(API.FeiYongReset,{takeOutSwitch:"0",allofee:{id:this.state.allfeeid}
-                    },(result)=>{
-                        // alert(JSON.stringify(result))
-                        if(result.status==1){
-                            this._toast.show('关闭成功')
-                        }
-                    })
-                }
-                }}
-                        value={this.state.falseSwitchIsOn}
-                        style={comstyle.textright}
-                        onTintColor='#FF305E'
-                    // // tintColor='blue'
-                        thumbTintColor='white'
-                />
+                {/*<Switch onValueChange={(value)=>*/}
+                {/*{this.setState({falseSwitchIsOn:value})*/}
+                {/*if(this.state.falseSwitchIsOn==false){*/}
+                 {/*postFetch(API.FeiYongReset,{takeOutSwitch:"1",allofee:{id:this.state.allfeeid}*/}
+                 {/*},(result)=>{*/}
+                     {/*// alert(JSON.stringify(result))*/}
+                     {/*if(result.status==1){*/}
+                         {/*this._toast.show('开启成功')*/}
+                     {/*}*/}
+                 {/*})*/}
+                {/*}else {*/}
+                    {/*postFetch(API.FeiYongReset,{takeOutSwitch:"0",allofee:{id:this.state.allfeeid}*/}
+                    {/*},(result)=>{*/}
+                        {/*// alert(JSON.stringify(result))*/}
+                        {/*if(result.status==1){*/}
+                            {/*this._toast.show('关闭成功')*/}
+                        {/*}*/}
+                    {/*})*/}
+                {/*}*/}
+                {/*}}*/}
+                        {/*value={this.state.falseSwitchIsOn}*/}
+                        {/*style={comstyle.textright}*/}
+                        {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                        {/*thumbTintColor='white'*/}
+                {/*/>*/}
+
+
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ falseSwitchIsOn:!this.state.falseSwitchIsOn  })
+                    if(this.state.falseSwitchIsOn==false){
+                        postFetch(API.FeiYongReset,{takeOutSwitch:"1",allofee:{id:this.state.allfeeid}
+                        },(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status==1){
+                                this._toast.show('开启成功')
+                            }
+                        })
+                    }else {
+                        postFetch(API.FeiYongReset,{takeOutSwitch:"0",allofee:{id:this.state.allfeeid}
+                        },(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status==1){
+                                this._toast.show('关闭成功')
+                            }
+                        })
+                    }
+
+
+                }}>
+                    <Image  source={ this.state.falseSwitchIsOn? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
 
             </View>
             <View style={[comstyle.item,{marginTop:10}]}>
@@ -324,19 +354,22 @@ export default class FeiYongManage extends Component{
                 <View style={{flexDirection:'column',backgroundColor:'white',borderRadius:5}}>
                     <Text style={[comstyle.text,{margin:10}]}>起送价</Text>
                     <View style={{width:Contants.Screen.width,height:1,backgroundColor:'#E5E5E5'}}/>
-                    <View style={{height:60,width:Contants.Screen.width,alignItems:'center',justifyContent:'center'}}>
+                    <View style={{flexDirection:'row',height:60, paddingLeft:0,width:Contants.Screen.width,alignItems:'center',justifyContent:'flex-start'}}>
                     <TextInput
                         ref={e => this._nameInput = e}
                         underlineColorAndroid='transparent'
                         style={{
-                            backgroundColor: "#FFFFFF",
-                            textAlign: "center",
                             height:40,
-                            borderWidth:1,
+                            backgroundColor: "#FFFFFF",
+                            //textAlign: "center",
                             borderColor:'#E5E5E5',
-                            width:Contants.Screen.width-80,
-                            // marginLeft:10,
-                            marginRight:40,
+                            borderWidth:1,
+                            borderRadius:5,
+                            paddingLeft:10,
+                            paddingTop:8,
+                            width:Contants.Screen.width-60,
+                            marginLeft:10,
+                            marginRight:10,
                             // marginTop:10
                         }}
                         placeholderTextColor="#B2B2B2"
@@ -413,7 +446,7 @@ export default class FeiYongManage extends Component{
                     <View style={{height:1,backgroundColor:"#E5E5E5"}}/>
                     <View style={[comstyle.rightview,{height:50}]}>
                     <Text style={styles.she}>起步范围： </Text>
-                        <Text style={styles.yanse}>5公里/km</Text>
+                        <Text style={styles.yanse}>5公里(km)</Text>
                     </View>
                     <View style={{height:1,backgroundColor:"#E5E5E5"}}/>
                     <View style={{flexDirection:'row',alignItems:'center',margin:10}}>
@@ -422,13 +455,14 @@ export default class FeiYongManage extends Component{
                             ref={e => this._nameInput = e}
                             underlineColorAndroid='transparent'
                             style={{
-                                // marginLeft: 20,
+                                paddingLeft: 10,
                                 backgroundColor: "white",
-                                textAlign: "center",
+                                //textAlign: "center",
                                 width:Contants.Screen.width/2+30,
                                 height:35,
                                 borderColor:'#E5E5E5',
                                 borderWidth:1,
+                                borderRadius:5,
                             }}
                             onChangeText={(e)=>{
                                 this.setState({
@@ -446,13 +480,14 @@ export default class FeiYongManage extends Component{
                             ref={e => this._nameInput = e}
                             underlineColorAndroid='transparent'
                             style={{
-                                // marginLeft: 20,
+                                paddingLeft: 10,
                                 backgroundColor: "white",
-                                textAlign: "center",
+                                //textAlign: "center",
                                 width:Contants.Screen.width/2+30,
                                 height:35,
                                 borderColor:'#E5E5E5',
                                 borderWidth:1,
+                                borderRadius:5,
                             }}
                             placeholderTextColor="#B2B2B2"
                             onChangeText={(e)=>{
@@ -529,11 +564,13 @@ export default class FeiYongManage extends Component{
                     <View style={{width:Contants.Screen.width,height:1,backgroundColor:'#E5E5E5'}}/>
                     <View style={{height:60,width:Contants.Screen.width,alignItems:'center',justifyContent:'center'}}>
                     <TextInput
-                    style={{// marginLeft: 20,
+                    style={{
+                        paddingLeft: 20,
                         backgroundColor: "#FFFFFF",
-                        textAlign: "center",
+                        //textAlign: "center",
                         height:40,
                         borderWidth:1,
+                        borderRadius:5,
                         borderColor:'#E5E5E5',
                         width:Contants.Screen.width-80,
                         // marginLeft:10,
@@ -609,16 +646,23 @@ export default class FeiYongManage extends Component{
                 <View style={{flexDirection:'column',backgroundColor:'white',borderRadius:5}}>
                     <Text style={[comstyle.text,{margin:10}]}>预约时间</Text>
                     <View style={{width:Contants.Screen.width,height:1,backgroundColor:'#E5E5E5'}}/>
-                    <View style={{height:60,width:Contants.Screen.width,alignItems:'center',justifyContent:'center'}}>
+                    <View style={{flexDirection:'row',height:60,width:Contants.Screen.width,alignItems:'center',justifyContent:'flex-start'}}>
                     <TextInput
-                        style={{   backgroundColor: "#FFFFFF",
-                            textAlign: "center",
+                        style={{
+
+                            backgroundColor: "#FFFFFF",
+                            //textAlign: "center",
                             height:40,
-                            borderWidth:1,
                             borderColor:'#E5E5E5',
-                            width:Contants.Screen.width-80,
-                            // marginLeft:10,
-                            marginRight:40,}}
+                            borderWidth:1,
+                            borderRadius:5,
+                            paddingLeft:10,
+                            paddingTop:5,
+                            width:Contants.Screen.width-60,
+                            marginLeft:10,
+                            marginRight:10,
+                            //marginRight:40,
+                        }}
                         placeholder={'单位：小时'}
                         underlineColorAndroid='transparent'
                         placeholderTextColor="#B2B2B2"
@@ -783,6 +827,7 @@ const styles=StyleSheet.create({
         marginBottom:20,
         fontSize:14,
         color:'#282828',
+        fontWeight:'bold',
     },
     yanse:{
         fontSize:14,

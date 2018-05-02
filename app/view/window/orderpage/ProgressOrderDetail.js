@@ -108,37 +108,24 @@ export default class ProgressOrderDetail extends Component {
         var contentView=null;
         if(this.state.deliveryMethod!=undefined&&this.state.deliveryMethod==1){
             contentView=(
-
                 <View style={styles.top}>
-                    <View style={styles.da}>
-                        <TouchableOpacity onPress={this.songda.bind(this)}>
-                        <Image style={[styles.da,{marginLeft:25}]} source={require('../../../img/window/baocun.png')}>
-                    <Text style={styles.text} onPress={this.songda.bind(this)}>确认送达</Text>
-                        </Image>
-                        </TouchableOpacity>
+                    <TouchableOpacity style={styles.da} onPress={this.songda.bind(this)}>
+                        <Text style={styles.text} onPress={this.songda.bind(this)}>确认送达</Text>
+                    </TouchableOpacity>
 
-                    </View>
-                        <TouchableOpacity style={[styles.da,{marginRight:25,
-                            marginLeft:10,height:35,backgroundColor:'white',
-                            flex:1,borderWidth:1,borderColor:'red',borderRadius:5,}]}>
-
-                            <Text style={styles.text}>打印订单</Text>
-
-                        </TouchableOpacity>
+                    <TouchableOpacity style={styles.da}>
+                        <Text style={styles.text}>打印订单</Text>
+                    </TouchableOpacity>
                 </View>
 
                         )
         }else {
            contentView=(
                <View style={styles.top}>
-                       <TouchableOpacity style={[styles.da,{marginRight:25,
-                           marginLeft:25,height:35,backgroundColor:'white',
-                           flex:1,borderWidth:1,borderColor:'red',borderRadius:5,}]}>
-
-                           <Text style={styles.text}>打印订单</Text>
-
-                       </TouchableOpacity>
-                   </View>
+                   <TouchableOpacity style={styles.da} >
+                       <Text style={styles.text}>打印订单</Text>
+                   </TouchableOpacity>
+               </View>
            )
         }
         // contentContainerStyle={{backgroundColor:"white"}}
@@ -374,16 +361,6 @@ const styles=StyleSheet.create({
         justifyContent:'space-between'
         //justifyContent:'center'
     },
-    text:{
-        // width:40,
-        // height:20,
-        fontSize:14,
-         // marginLeft:30,30
-        // backgroundColor:'white',
-        // marginRight:30,
-        color:'#FF305E'
-
-    },
     heng:{
         width:Contants.Screen.width,
         height:1,
@@ -436,11 +413,28 @@ const styles=StyleSheet.create({
         backgroundColor:'white',
         marginTop:20
     },
+
+
     da:{
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor:'white',
+        marginRight:10,
+        marginLeft:10,
+        width:(Contants.Screen.width-40)/2,
+        height:35,
+        borderRadius:5,
+        borderColor:'red',
+        borderWidth:1
 
     },
+    text:{
+        fontSize:16,
+        color:'#FF305E'
+    },
+
+
+
     dao:{
         fontSize:14,
         color:'#459CF4'

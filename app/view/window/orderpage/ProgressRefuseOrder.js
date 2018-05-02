@@ -131,10 +131,18 @@ export default class RefuseOrder extends Component {
            return(
 
                <View style={styles.contain}>
-                   <TouchableOpacity style={styles.sure} onPress={this.tijiaos.bind(this)}>
-                   <Image source={require('../../../img/window/tijiao.png')} style={{alignItems:'center',flexDirection:'row',justifyContent:'center'}}>
-                       <Text style={{color:'#FF305E',fontSize:14}} onPress={this.tijiaos.bind(this)}>确认提交</Text>
-                   </Image>
+                   <TouchableOpacity style={[styles.sure,{ justifyContent:'center',
+                       alignItems:'center',
+                       backgroundColor:'white',
+                       marginRight:20,
+                       marginLeft:20,
+                       width:Contants.Screen.width-40,
+                       height:35,
+                       borderRadius:5,
+                       borderColor:'red',
+                       borderWidth:1}]} onPress={this.tijiaos.bind(this)}>
+                       <Text style={{color:'#FF305E',fontSize:16}} onPress={this.tijiaos.bind(this)}>确认提交</Text>
+
                    </TouchableOpacity>
                    <View style={styles.ben}>
                        <View style={comstyle.rightview}>

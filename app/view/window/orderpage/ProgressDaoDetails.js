@@ -107,25 +107,17 @@ export default class ProgressDaoDetails extends Component {
             <View style={styles.contain}>
                 <ScrollView style={{width:Contants.Screen.width}} >
                     <View style={styles.top}>
-                        {/*<Text style={styles.text} onPress={()=>{*/}
-                        {/*this.props.navigation.navigate('RefuseOrder',{data:list})*/}
-                        {/*}}>申请拒单</Text>*/}
-                        <TouchableOpacity style={[styles.da,{marginLeft:20}]} onPress={()=>{
+                        <TouchableOpacity style={[styles.da,{borderColor:'#e5e5e5',}]} onPress={()=>{
                             this.props.navigation.navigate('ProgressRefuseOrder',{data:list})
                         }}>
-                            <Image style={[styles.da]} source={require('../../../img/window/ashanchu.png')}>
-                                <Text style={[styles.text,{ color:'#282828'}]} onPress={()=>{
+                            <Text style={[styles.text,{ color:'#282828'}]} onPress={()=>{
                                     //this.props.navigation.navigate('ProgressRefuseOrder',{data:list})
                                 }}>提交异常</Text>
-                            </Image>
                         </TouchableOpacity>
 
-                        <View style={[styles.da,{borderWidth:1,borderColor:'#ff305e',borderRadius:5,
-                            marginRight:20}]}>
-                            <Image style={[styles.da]} source={require('../../../img/window/ashanchu.png')}>
-                                <Text style={styles.text}>打印订单</Text>
-                            </Image>
-                        </View>
+                        <TouchableOpacity  style={styles.da}>
+                              <Text style={styles.text}>打印订单</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={[comstyle.item,{marginTop:20}]}>
                         <View style={comstyle.rightview}>
@@ -347,16 +339,6 @@ const styles=StyleSheet.create({
         marginTop:25,
         justifyContent:'space-between'
     },
-    text:{
-        // width:40,
-        // height:20,
-        fontSize:14,
-        // marginLeft:30,30
-        // backgroundColor:'white',
-        // marginRight:30,
-        color:'#FF305E'
-
-    },
     heng:{
         width:Contants.Screen.width,
         height:1,
@@ -409,11 +391,6 @@ const styles=StyleSheet.create({
         backgroundColor:'white',
         marginTop:20
     },
-    da:{
-        justifyContent:'center',
-        alignItems:'center',
-
-    },
     dao:{
         fontSize:14,
         color:'#33BAB2'
@@ -428,5 +405,27 @@ const styles=StyleSheet.create({
         alignItems:'center',
         height:46,
         backgroundColor:'#FFFFFF'
-    }
+    },
+
+
+
+    da:{
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'white',
+        backgroundColor:'white',
+        marginRight:10,
+        marginLeft:10,
+        width:(Contants.Screen.width-40)/2,
+        height:35,
+        borderRadius:5,
+        borderColor:'red',
+        borderWidth:1
+
+    },
+    text:{
+        fontSize:16,
+        color:'#FF305E'
+    },
+
 })

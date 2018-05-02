@@ -64,8 +64,6 @@ import WaiOrderSecDetails from './view/window/orderpage/WaiOrderSecDetail';
 import OrderFirst from './view/window/orderpage/OrderFirst';
 import BeiZhu from './view/window/orderpage/BeiZhu';
 import  RefuseOrder from './view/window/orderpage/RefuseOrder';
-import  ProgressRefuseOrder from './view/window/orderpage/ProgressRefuseOrder';
-
 import  MainSetting from './view/window/setting/MainSetting';
 import  ClassifyOrder from './view/window/setting/ClassifyOrder';
 import ClassifyPaiXu from './view/window/setting/ClassifyPaiXu';
@@ -176,6 +174,9 @@ import TiXianView from './view/window/message/TiXianView'
 import AddNewCard from './view/window/message/AddNewCard'
 import BigImage from './view/window/news/BigImage'
 import  CeShiImage from './view/window/news/CeShiImage'
+import  GallyImage from './view/window/news/GallyImage'
+
+
 import LocationShareView from './view/window/news/LocationShareView'
 import PersonalView from './view/window/setting/PersonalView'
 import ShareToDongTai from './view/window/news/ShareToDongTai'
@@ -296,11 +297,6 @@ const StackNavi=StackNavigator({
     RefuseOrder:{
      screen:RefuseOrder,
         navigationOptions: ({navigation}) => navigationOptions(navigation, "申请拒单")
-    },
-
-    ProgressRefuseOrder:{
-        screen:ProgressRefuseOrder,
-        navigationOptions: ({navigation}) => navigationOptions(navigation, "提交异常")
     },
     MainSetting:{
      screen:MainSetting,
@@ -694,6 +690,9 @@ const StackNavi=StackNavigator({
     },
     CeShiImage:{
      screen:CeShiImage
+    },
+    GallyImage:{
+        screen:GallyImage
     },
     LocationShareView:{
      screen:LocationShareView,

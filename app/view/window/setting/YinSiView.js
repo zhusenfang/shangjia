@@ -30,7 +30,8 @@ export default class YinSiView extends Component{
             fenschat:false,
             notallmo:false,
             allowStrage:false,
-            together:false
+            together:false,
+            allowTen:false,
         }
     }
     componentWillUnmount(){
@@ -104,105 +105,242 @@ export default class YinSiView extends Component{
      })
     }
     render(){
-        return(<View style={[comstyle.con,{flexDirection:'column'}]}>
+        return(
+
+
+            <View style={[comstyle.con,{flexDirection:'column'}]}>
+
             <View style={[comstyle.item,{marginTop:20}]}>
                 <Text style={styles.jinzhi}>自动关注我的粉丝</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({falseSwitchIsOn:value})
-                        if(this.state.falseSwitchIsOn===false){
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{autoAddFans:1}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('开启成功')
-                                }
-                            })
-                        }else {
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{autoAddFans:0}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('关闭成功')
-                                }
-                            })
-                        }
-                    }}
-                    value={this.state.falseSwitchIsOn}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({
+                        falseSwitchIsOn:!this.state.falseSwitchIsOn
+                    })
+                    if(this.state.falseSwitchIsOn===false){
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{autoAddFans:1}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('开启成功')
+                            }
+                        })
+                    }else {
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{autoAddFans:0}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('关闭成功')
+                            }
+                        })
+                    }
+                }}>
+                    <Image  source={ this.state.falseSwitchIsOn? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+
+                {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({falseSwitchIsOn:value})*/}
+                        {/*if(this.state.falseSwitchIsOn===false){*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{autoAddFans:1}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('开启成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}else {*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{autoAddFans:0}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('关闭成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.falseSwitchIsOn}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                {/*/>*/}
             </View>
             <View style={comstyle.heng}/>
+
             <View style={[comstyle.item,{marginTop:6}]}>
                 <Text style={styles.jinzhi}>允许粉丝发起聊天</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({fenschat:value})
-                        if(this.state.fenschat===false){
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{passivityChat:1}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('开启成功')
-                                }
-                            })
-                        }else {
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{passivityChat:0}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('关闭成功')
-                                }
-                            })
-                        }
-                    }}
-                    value={this.state.fenschat}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ fenschat:!this.state.fenschat })
+                    if(this.state.fenschat===false){
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{passivityChat:1}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('开启成功')
+                            }
+                        })
+                    }else {
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{passivityChat:0}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('关闭成功')
+                            }
+                        })
+                    }
+                }}>
+                    <Image  source={ this.state.fenschat? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+
+                {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({fenschat:value})*/}
+                        {/*if(this.state.fenschat===false){*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{passivityChat:1}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('开启成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}else {*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{passivityChat:0}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('关闭成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.fenschat}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                {/*/>*/}
             </View>
             <View style={comstyle.heng}/>
+
+
             <Text style={styles.dongta}>动  态</Text>
 
             <View style={[comstyle.item,{marginTop:6}]}>
                 <Text style={styles.jinzhi}>不让陌生人查看我的动态</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({notallmo:value})
-                        if(this.state.notallmo===false){
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{strangerSeeStatus:1}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('开启成功')
-                                }
-                            })
-                        }else {
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{strangerSeeStatus:0}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('关闭成功')
-                                }
-                            })
-                        }
-                    }}
-                    value={this.state.notallmo}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ notallmo:!this.state.notallmo })
+                    if(this.state.notallmo===false){
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{strangerSeeStatus:1}},(result)=>{
+                            if(result.status===1){
+                                this._toastf.show('开启成功')
+                            }
+                        })
+                    }else {
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{strangerSeeStatus:0}},(result)=>{
+                            if(result.status===1){
+                                this._toastf.show('关闭成功')
+                            }
+                        })
+                    }
+                }}>
+                    <Image  source={ this.state.notallmo? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+                {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({notallmo:value})*/}
+                        {/*if(this.state.notallmo===false){*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{strangerSeeStatus:1}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('开启成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}else {*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{strangerSeeStatus:0}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('关闭成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.notallmo}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                {/*/>*/}
             </View>
             <View style={comstyle.heng}/>
 
             <View style={[comstyle.item,{marginTop:6}]}>
-                <Text style={styles.jinzhi}>不让粉丝看我的动态</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({allowStrage:value})
+                <Text style={styles.jinzhi}>允许陌生人看十条动态</Text>
+
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({
+                        allowTen:!this.state.allowTen
+                    })
+                    if(this.state.allowTen===false){
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:1}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('开启成功')
+                            }
+                        })
+                    }else {
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:0}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('关闭成功')
+                            }
+                        })
+                    }
+                }}>
+                    <Image  source={ this.state.allowTen? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+                {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({allowStrage:value})*/}
+                        {/*if(this.state.allowStrage===false){*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:1}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('开启成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}else {*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:0}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('关闭成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.allowStrage}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                {/*/>*/}
+            </View>
+            <View style={comstyle.heng}/>
+
+                <View style={[comstyle.item,{marginTop:6}]}>
+                    <Text style={styles.jinzhi}>不让粉丝看我的动态</Text>
+
+                    <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                        this.setState({
+                            allowStrage:!this.state.allowStrage
+                        })
                         if(this.state.allowStrage===false){
                             postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:1}},(result)=>{
                                 // alert(JSON.stringify(result))
@@ -218,47 +356,96 @@ export default class YinSiView extends Component{
                                 }
                             })
                         }
-                    }}
-                    value={this.state.allowStrage}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
+                    }}>
+                        <Image  source={ this.state.allowStrage? require('../../../img/goods/switchon.png'):
+                            require('../../../img/goods/switchoff.png')}/>
+                    </TouchableOpacity>
 
-                />
-            </View>
-            <View style={comstyle.heng}/>
+                    {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({allowStrage:value})*/}
+                    {/*if(this.state.allowStrage===false){*/}
+                    {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:1}},(result)=>{*/}
+                    {/*// alert(JSON.stringify(result))*/}
+                    {/*if(result.status===1){*/}
+                    {/*this._toastf.show('开启成功')*/}
+                    {/*}*/}
+                    {/*})*/}
+                    {/*}else {*/}
+                    {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{fansSeeStatus:0}},(result)=>{*/}
+                    {/*// alert(JSON.stringify(result))*/}
+                    {/*if(result.status===1){*/}
+                    {/*this._toastf.show('关闭成功')*/}
+                    {/*}*/}
+                    {/*})*/}
+                    {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.allowStrage}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                    {/*/>*/}
+                </View>
+                <View style={comstyle.heng}/>
 
             <View style={[comstyle.item,{marginTop:6}]}>
                 <Text style={styles.jinzhi}>订单评价同步到动态</Text>
-                <Switch
-                    onValueChange={(value)=>
-                    {this.setState({together:value})
-                        if(this.state.together===false){
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{togetherStatus:1}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('开启成功')
-                                }
-                            })
-                        }else {
-                            postFetch(API.YinSiViewSettingReset,{userMemberSeting:{togetherStatus:0}},(result)=>{
-                                // alert(JSON.stringify(result))
-                                if(result.status===1){
-                                    this._toastf.show('关闭成功')
-                                }
-                            })
-                        }
-                    }}
-                    value={this.state.together}
-                    onTintColor='#FF305E'
-                    // // tintColor='blue'
-                    thumbTintColor='white'
-                    style={comstyle.textright}
 
-                />
+                <TouchableOpacity style={{marginRight:20}} onPress={()=>{
+                    this.setState({ together:!this.state.together })
+                    if(this.state.together===false){
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{togetherStatus:1}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('开启成功')
+                            }
+                        })
+                    }else {
+                        postFetch(API.YinSiViewSettingReset,{userMemberSeting:{togetherStatus:0}},(result)=>{
+                            // alert(JSON.stringify(result))
+                            if(result.status===1){
+                                this._toastf.show('关闭成功')
+                            }
+                        })
+                    }
+                }}>
+                    <Image  source={ this.state.together? require('../../../img/goods/switchon.png'):
+                        require('../../../img/goods/switchoff.png')}/>
+                </TouchableOpacity>
+
+
+                {/*<Switch*/}
+                    {/*onValueChange={(value)=>*/}
+                    {/*{this.setState({together:value})*/}
+                        {/*if(this.state.together===false){*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{togetherStatus:1}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('开启成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}else {*/}
+                            {/*postFetch(API.YinSiViewSettingReset,{userMemberSeting:{togetherStatus:0}},(result)=>{*/}
+                                {/*// alert(JSON.stringify(result))*/}
+                                {/*if(result.status===1){*/}
+                                    {/*this._toastf.show('关闭成功')*/}
+                                {/*}*/}
+                            {/*})*/}
+                        {/*}*/}
+                    {/*}}*/}
+                    {/*value={this.state.together}*/}
+                    {/*onTintColor='#FF305E'*/}
+                    {/*// // tintColor='blue'*/}
+                    {/*thumbTintColor='white'*/}
+                    {/*style={comstyle.textright}*/}
+
+                {/*/>*/}
             </View>
             <View style={comstyle.heng}/>
+
+
             <Toast ref={(e) => {
                 this._toastf = e
             }}

@@ -255,6 +255,9 @@ export default class DianMessage extends Component {
                             width:Contants.Screen.width-80,
                             // marginLeft:10,
                             marginRight:40,
+                            color:'#b2b2b2',
+                            padding:10,
+
                         }}
                         placeholderTextColor="#B2B2B2"
                         onChangeText={(e)=>{
@@ -532,7 +535,8 @@ export default class DianMessage extends Component {
            },(error)=>{
                this._toasts.show(error)
            })
-        }else {
+        }
+        else {
             // let items=[];
             // this.state.list.map((item,index)=>{
             //     items.push({url:item.imgUrl})
@@ -540,10 +544,12 @@ export default class DianMessage extends Component {
             // this.props.navigation.navigate('BigImage',{data:items})
             let items=[];
             this.state.oldllist.map((item,index)=>{
-                items.push({source:{uri:item.imgUrl}})
+                items.push({"source":{uri:item.imgUrl}})
 
             })
             //alert(JSON.stringify(result));
+
+            //alert(JSON.stringify(items));
             this.props.navigation.navigate('CeShiImage',{data:items})
         }
 

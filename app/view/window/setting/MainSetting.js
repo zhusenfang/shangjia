@@ -76,19 +76,20 @@ export default class MainSetting extends Component{
     render(){
         return(
             <ScrollView style={{flex:1,backgroundColor:'#f9f9f9'}}>
-
-
                 <TouchableOpacity style={styles.tou} onPress={()=>{this.props.navigation.navigate('PersonalView')}}>
-
                     <View style={styles.flex}>
                         <Image source={{uri:this.state.pic}} style={[styles.img,{width:45,height:45,borderRadius:4}]}/>
                         <View style={styles.wenzi}>
-                            <Text style={styles.names}>{this.state.name}</Text>
-                            <Text style={styles.descriptions}>{this.state.description}</Text>
+                            <Text style={[styles.names,{fontSize:16,height:20,marginBottom:5}]}>{this.state.name}</Text>
+                            <Text style={[styles.descriptions,{fontSize:15}]}>{this.state.description==undefined?'':this.state.description}</Text>
                         </View>
                     </View>
                     <View style={styles.right}>
-                        <Image source={{uri:this.state.erwei}} style={styles.switch}/>
+                        <Image source={
+                            require('../../../img/dian/erweima.png')
+
+                            // {uri:this.state.erwei}
+                        } style={styles.erweima}/>
                         <Image source={require('../../../img/shezhi/jian.png')}/>
                     </View>
                 </TouchableOpacity>
@@ -320,5 +321,10 @@ const styles=StyleSheet.create({
     descriptions:{
         fontSize:12,
         color:'#B2B2B2'
+    },
+    erweima:{
+        marginRight:20,
+        width:20,
+        height:20
     }
 })
