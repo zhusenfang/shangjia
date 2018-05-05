@@ -11,14 +11,23 @@ import Storage from '../common/GGAsyncStorage'
 var event='http://122.112.196.52:8080/mtool/portal/api/'
 var API={
     Register:"http://122.112.196.52:8080/mtool/portal/api/communication/smsverificode/registuser",
-    Search:'http://122.112.196.52:8080/mtool/portal/api/orderdining/search_merchant_order',
-    SearchDetail:event+'orderdining/search_order_detail',
     ForgetPwd:event+'communication/smsverificode/forgetpassword',
     Password:event+'communication/smsverificode/identification',
     ResetPwd:event+'user/member/updatepassword',
-    Order:event+'orderdining/search_pending_order',
+
+
+    Search: event+'orderdining/search_merchant_order',
+    SearchDetail:event+'orderdining/search_order_detail',
+    WeChatZhif:event+'orderrecharge/create_order_recharge',
+    HistoryOrder:event+'orderdining/search_complete_merchant_order',
+    OrderSec:event+'orderdining/search_pending_order',
+    Order:   event+'orderdining/search_pending_order',
+    HeXiaoDetail:event+'orderdining/order_cancellation_detail',
+    ShureHeXiao:event+'orderdining/order_dining_submit',
     chaoshi:event+'orderdining/exec_order_cancel',
     OrderDetail:event+'orderdining/search_pending_order_detail',
+
+
     RefuseOrder:event+'merchantRefuseReason/application_back_order',
     BuChongOrder:event+'orderdiningrefund/save_order_reason',
     ListOrder:event+'foodgroup/view_food_group',
@@ -58,11 +67,8 @@ var API={
     SureSongDa:event+'orderdining/confirmOrder',
     YiChangOrder:event+'orderdining/search_exception_order',
     ZhangJing:event+'user/memberaccount/account_detail',
-    WeChatZhif:event+'orderrecharge/create_order_recharge',
-    HistoryOrder:event+'orderdining/search_complete_merchant_order',
-    OrderSec:event+'orderdining/search_pending_order',
-    HeXiaoDetail:event+'orderdining/order_cancellation_detail',
-    ShureHeXiao:event+'orderdining/order_dining_submit',
+
+
     ReportDongTai:event+'forum/post/createforumPost',
     PingLunDetail:event+'forum/post/forumPost_detail',
     DongTaiPingLund:event+'forum/postcomment/find_forumpost_comment',

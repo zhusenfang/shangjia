@@ -48,19 +48,22 @@ export default class MainSetting extends Component{
 
     }
     componentDidMount(){
+
         if(Platform.OS==='android'){
             BackHandler.addEventListener('hardwareBackPress', this._androidBack);}
-    postFetch(API.ListOrder,null,(result)=>{
-        // alert(JSON.stringify(result))
-        if(result.status==1){
-            this.setState({
-                dataSource:this.state.dataSource.cloneWithRows(result.data),
-                list:result.data
+
+
+            postFetch(API.ListOrder,null,(result)=>{
+                // alert(JSON.stringify(result))
+                if(result.status==1){
+                    this.setState({
+                        dataSource:this.state.dataSource.cloneWithRows(result.data),
+                        list:result.data
+                    })
+                }
+            },(error)=>{
+                alert(error)
             })
-        }
-    },(error)=>{
-        alert(error)
-    })
     }
     render(){
         // alert(JSON.stringify(this.state.list))

@@ -109,8 +109,10 @@ export default class QuicklyInput extends Component {
         if(Platform.OS==='android'){
             BackHandler.addEventListener('hardwareBackPress', this._androidBack);}
         const list=this.props.navigation.state.params.data
-        // alert(list)
-      postFetch(API.BianJiGoods,{foodInfo:{id:list}},(result)=>{
+
+
+        //  alert(list)
+        postFetch(API.BianJiGoods,{foodInfo:{id:list}},(result)=>{
           // alert(JSON.stringify(result))
           if(result.status==1){
               //是否上架
@@ -156,9 +158,10 @@ export default class QuicklyInput extends Component {
                   dataSource:this.state.dataSource.cloneWithRows(JSON.parse(JSON.stringify(this.LetAll)))
               })
           }
-      })
+        })
+
         postFetch(API.ListOrder,null,(result)=>{
-            // alert(JSON.stringify(result))
+            //alert(JSON.stringify(result))获取商品分类
             if(result.status==1){
                 var LetAlls=result.data;
                 result.data.map((o,i)=>{
@@ -424,6 +427,7 @@ export default class QuicklyInput extends Component {
                     multiline={true} //代表可以输入多行
                     underlineColorAndroid='transparent'
                     editable={true}
+                    style={{backgroundColor:'#fff',padding:5, height:70,}}
                     placeholderTextColor="#B2B2B2"
                     defaultValue={this.state.goodsweizims}
                     onChangeText={(e)=>{

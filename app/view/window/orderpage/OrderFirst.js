@@ -107,7 +107,15 @@ export default class OrderFirst extends Component {
 
 
     fetchDate(page){
-        postFetch(API.Order,{orderDining:{status:0,diningType:0},pageNum:page,numPerPage:10},
+
+        //postFetch(API.Order,{orderDining:{status:0,diningType:0},pageNum:page,numPerPage:10},
+        let pdata = {
+                        "orderDining":{
+                            "status":0,
+                            "diningType":0
+                        },pageNum:page,numPerPage:10
+                    };
+        postFetch(API.Order,pdata,
         (result)=>
         {
             //alert(JSON.stringify(result))

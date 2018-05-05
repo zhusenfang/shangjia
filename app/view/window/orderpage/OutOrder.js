@@ -47,9 +47,11 @@ export default class OutOrder extends Component {
         postFetch(API.OrderSec,{orderDining:{status:0,diningType:0},pageNum:1,numPerPage:10},(result)=>{
 
             if(result.status==1){
+                //alert(JSON.stringify(result))
                 this.setState({
-                    //msg:result.page.totalCount
+                    msg:result.page.totalCount
                 })
+
             }else {
                 // if(result.status==2){
                 //    this.poststatus()
@@ -63,7 +65,7 @@ export default class OutOrder extends Component {
 
             if(result.status==1){
                 this.setState({
-                    //msgtow:result.page.totalCount
+                    msgtow:result.page.totalCount
                 })
             }
             // else {

@@ -61,93 +61,93 @@ export default class MainSetting extends Component{
     componentDidMount(){
         if(Platform.OS==='android'){
             BackHandler.addEventListener('hardwareBackPress', this._androidBack);}
-        postFetch(API.TotalGoods,null,(result)=>{
-            // alert(JSON.stringify(result))
-            if(result.status==1){
-                var map = {},
-                dest = []
-                for(var i = 0; i < result.data.length; i++){
-                    this.setState({
-                        k:result.data
-                    })
-                    var ai = result.data[i];
-                    if(!map[ai.charAlpha]){
-                        dest.push({
-                            charAlpha: ai.charAlpha,
-                            // name: ai.name,
-                            data: [ai]
-                        });
-                        map[ai.charAlpha] = ai;
-                    }else{
-                        for(var j = 0; j < dest.length; j++){
-                            var dj = dest[j];
-                            if(dj.charAlpha == ai.charAlpha){
-                                dj.data.push(ai);
-                                break;
+            postFetch(API.TotalGoods,null,(result)=>{
+
+                if(result.status==1){
+                    var map = {},
+                    dest = []
+                    for(var i = 0; i < result.data.length; i++){
+                        this.setState({
+                            k:result.data
+                        })
+                        var ai = result.data[i];
+                        if(!map[ai.charAlpha]){
+                            dest.push({
+                                charAlpha: ai.charAlpha,
+                                // name: ai.name,
+                                data: [ai]
+                            });
+                            map[ai.charAlpha] = ai;
+                        }else{
+                            for(var j = 0; j < dest.length; j++){
+                                var dj = dest[j];
+                                if(dj.charAlpha == ai.charAlpha){
+                                    dj.data.push(ai);
+                                    break;
+                                }
                             }
                         }
                     }
+                  this.setState({
+                      destlist:dest
+                  })
+                    // alert(JSON.stringify(this.state.destlist))
+                    // for(var i=0;i<s.length;i++){
+                    // var first=[];
+                    // for(var j=0;j<result.data.length;j++){
+                    //
+                    //     if(result.data[j].charAlpha.toUpperCase()==s[i]){
+                    //         first.push(result.data[j])
+                    //
+                    //     }
+                    //
+                    // }
+                    // // alert()
+                    // if(first.length > 0 ){
+                    //     // var second  = JSON.parse(JSON.stringify((first)))
+                    //     this.setState({
+                    //         title:first[0].charAlpha,
+                    //         dataSource:this.state.dataSource.cloneWithRows(first)
+                    //     })
+                    // }
+                    //
+                    // // alert(JSON.stringify(first))
+                    // //  break;
+                    //  }
+                    // this.setState({
+                    //     dataSource:this.state.dataSource.cloneWithRows(dest[7])
+                    // })
+                    // alert(JSON.stringify(dest))
+                    // if(result.data)
+                    // for(var i=0;i<result.data.length;i++){
+
+                    // if(result.data[i].charAlpha=='F'){
+                    //
+                    //     this.setState({
+                    //         k:result.data,
+                    //         title:'F',
+                    //         dataSource:this.state.dataSource.cloneWithRows(result.data)
+                    //     })
+                    // }else {
+                    //     if(result.data[i].charAlpha=='K'){
+                    //         this.setState({
+                    //             titles:result.data[i].charAlpha,
+                    //             dataSourcea:this.state.dataSourcea.cloneWithRows(result.data)
+                    //         })
+                    //     }else {
+                    //
+                    //     }
+                    // }
+                    // }
                 }
-              this.setState({
-                  destlist:dest
-              })
-                // alert(JSON.stringify(this.state.destlist))
-                // for(var i=0;i<s.length;i++){
-                // var first=[];
-                // for(var j=0;j<result.data.length;j++){
-                //
-                //     if(result.data[j].charAlpha.toUpperCase()==s[i]){
-                //         first.push(result.data[j])
-                //
-                //     }
-                //
-                // }
-                // // alert()
-                // if(first.length > 0 ){
-                //     // var second  = JSON.parse(JSON.stringify((first)))
-                //     this.setState({
-                //         title:first[0].charAlpha,
-                //         dataSource:this.state.dataSource.cloneWithRows(first)
-                //     })
-                // }
-                //
-                // // alert(JSON.stringify(first))
-                // //  break;
-                //  }
-                // this.setState({
-                //     dataSource:this.state.dataSource.cloneWithRows(dest[7])
-                // })
-                // alert(JSON.stringify(dest))
-                // if(result.data)
-                // for(var i=0;i<result.data.length;i++){
-
-                // if(result.data[i].charAlpha=='F'){
-                //
-                //     this.setState({
-                //         k:result.data,
-                //         title:'F',
-                //         dataSource:this.state.dataSource.cloneWithRows(result.data)
-                //     })
-                // }else {
-                //     if(result.data[i].charAlpha=='K'){
-                //         this.setState({
-                //             titles:result.data[i].charAlpha,
-                //             dataSourcea:this.state.dataSourcea.cloneWithRows(result.data)
-                //         })
-                //     }else {
-                //
-                //     }
-                // }
-                // }
-            }
 
 
-        },(error)=>{
-            alert(error)
-        })
-        this.state.destlist.map((item,i)=>{
-            Headers.push(item.charAlpha)
-        })
+            },(error)=>{
+                alert(error)
+            })
+            this.state.destlist.map((item,i)=>{
+                Headers.push(item.charAlpha)
+            })
 
     }
     // componentWillUnmount() {
@@ -168,7 +168,8 @@ export default class MainSetting extends Component{
     render(){
         // alert(JSON.stringify(dest))
 
-        return(<View style={[comstyle.contain,{backgroundColor:"#f9f9f9"}]}>
+        return(
+            <View style={[comstyle.contain,{backgroundColor:"#f9f9f9"}]}>
             <View style={[comstyle.item,{marginTop:20}]}>
                 <TouchableOpacity style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}} onPress={()=>{
                     this.props.navigation.navigate('GoodsAdding')
@@ -190,7 +191,7 @@ export default class MainSetting extends Component{
                 renderSectionHeader={this.sectionComp}
                 // dataSource={this.state.dataSource}
                 renderItem={this._renderRow}
-                 sections={this.state.destlist}
+                sections={this.state.destlist}
                 keyExtractor={ (item) => item.name }
                 // scrollToIndex={()=>{}}
                 onViewableItemsChanged = {(info)=>this.itemChange(info)}  //滑动时调用
@@ -269,19 +270,21 @@ export default class MainSetting extends Component{
 
     _renderRow=(rowData,sectionID,rowID,highlightRow)=>{
         // alert(JSON.stringify(rowData))
-        return(<View style={{flexDirection:'row',
-            justifyContent:'space-between',
-            alignItems:'center',
-            backgroundColor:'white',
-            height:50,marginTop:10}}>
-            <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
-                <Image source={{uri:rowData.item.imgUrl}} style={{width:45,height:45,marginLeft:20}} />
-                <Text style={[comstyle.text,{marginLeft:10}]}>{rowData.item.name}</Text>
+        return(
+            <View style={{flexDirection:'row',
+                            justifyContent:'space-between',
+                            alignItems:'center',
+                            backgroundColor:'white',
+                            height:50,marginTop:10}}>
+                <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+                    <Image source={{uri:rowData.item.imgUrl}} style={{width:45,height:45,marginLeft:20}} />
+                    <Text style={[comstyle.text,{marginLeft:10}]}>{rowData.item.name}</Text>
+                </View>
+                <TouchableOpacity onPress={this.xiugai.bind(this,rowID,rowData.item.id)}>
+                    <Image source={require('../../../img/window/write.png')} style={[comstyle.img,{marginRight:20 }]}/>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={this.xiugai.bind(this,rowID,rowData.item.id)}>
-            <Image source={require('../../../img/window/write.png')} style={[comstyle.img,{marginRight:20 }]}/>
-            </TouchableOpacity>
-        </View>)
+        )
     }
     sectionComp=(info)=>{
         // alert(JSON.stringify(info))
