@@ -105,10 +105,10 @@ constructor(props){
                      {/*<Text style={styles.text} onPress={()=>{*/}
                      {/*this.props.navigation.navigate('RefuseOrder',{data:list})*/}
                      {/*}}>申请拒单</Text>*/}
-                     <TouchableOpacity style={styles.da} onPress={()=>{
+                     <TouchableOpacity style={[styles.da,{borderColor:'#e5e5e5'}]} onPress={()=>{
                          this.props.navigation.navigate('RefuseOrder',{data:list})
                      }}>
-                              <Text style={styles.text} onPress={()=>{
+                              <Text style={[styles.text,{color:'#282828'}]} onPress={()=>{
                                  this.props.navigation.navigate('RefuseOrder',{data:list})
                              }}>申请拒单</Text>
 
@@ -197,7 +197,7 @@ constructor(props){
                          <Text style={[comstyle.text,{marginLeft:20,marginTop:10}]}>客户： {this.state.name}</Text>
                          <View style={{flexDirection:'row'}}>
                              <Text style={[comstyle.text,{marginLeft:20,marginTop:10}]}>电话： </Text>
-                             <Text style={{fontSize:14,color:'#459CF4',marginTop:10}}>{this.state.phone}</Text>
+                             <Text style={{fontSize:14,color:'#33bab2',marginTop:10}}>{this.state.phone}</Text>
                          </View>
 
                      </View>

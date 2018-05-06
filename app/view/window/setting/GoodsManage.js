@@ -281,7 +281,8 @@ export default class MainSetting extends Component{
                     <Text style={[comstyle.text,{marginLeft:10}]}>{rowData.item.name}</Text>
                 </View>
                 <TouchableOpacity onPress={this.xiugai.bind(this,rowID,rowData.item.id)}>
-                    <Image source={require('../../../img/window/write.png')} style={[comstyle.img,{marginRight:20 }]}/>
+                    <Image source={require('../../../img/window/write.png')}
+                           style={[comstyle.img,{marginRight:20 }]}/>
                 </TouchableOpacity>
             </View>
         )

@@ -105,12 +105,12 @@ constructor(props){
                      {/*<Text style={styles.text} onPress={()=>{*/}
                      {/*this.props.navigation.navigate('RefuseOrder',{data:list})*/}
                      {/*}}>申请拒单</Text>*/}
-                     <TouchableOpacity style={styles.da} onPress={()=>{
+                     <TouchableOpacity style={[styles.da,{borderColor:'#e5e5e5'}]} onPress={()=>{
                          this.props.navigation.navigate('RefuseOrder',{data:list})
                      }}>
-                             <Text style={styles.text} onPress={()=>{
+                             <Text style={[styles.text,{color:'#282828'}]} onPress={()=>{
                                  this.props.navigation.navigate('RefuseOrder',{data:list})
-                             }}>申请拒单2</Text>
+                             }}>申请拒单</Text>
 
                      </TouchableOpacity>
 

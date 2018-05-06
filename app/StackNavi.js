@@ -64,6 +64,8 @@ import WaiOrderSecDetails from './view/window/orderpage/WaiOrderSecDetail';
 import OrderFirst from './view/window/orderpage/OrderFirst';
 import BeiZhu from './view/window/orderpage/BeiZhu';
 import  RefuseOrder from './view/window/orderpage/RefuseOrder';
+import  ProgressRefuseOrder from './view/window/orderpage/ProgressRefuseOrder';
+
 import  MainSetting from './view/window/setting/MainSetting';
 import  ClassifyOrder from './view/window/setting/ClassifyOrder';
 import ClassifyPaiXu from './view/window/setting/ClassifyPaiXu';
@@ -297,6 +299,10 @@ const StackNavi=StackNavigator({
     RefuseOrder:{
      screen:RefuseOrder,
         navigationOptions: ({navigation}) => navigationOptions(navigation, "申请拒单")
+    },
+    ProgressRefuseOrder:{
+        screen:ProgressRefuseOrder,
+        navigationOptions: ({navigation}) => navigationOptions(navigation, "提交异常")
     },
     MainSetting:{
      screen:MainSetting,

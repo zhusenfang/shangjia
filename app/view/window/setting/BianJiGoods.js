@@ -421,7 +421,7 @@ export default class QuicklyInput extends Component {
                 />
             </View>
             <View style={comstyle.heng}/>
-            <View style={styles.miaosu}>
+            <View style={[styles.miaosu,{backgroundColor:'white'}]}>
                 <TextInput
                     placeholder={'商品的文字描述'}
                     multiline={true} //代表可以输入多行
@@ -438,10 +438,10 @@ export default class QuicklyInput extends Component {
                 />
             </View>
             <View style={comstyle.heng}/>
-            <View style={styles.imglist}>
+            <View style={[styles.imglist,{backgroundColor:'white',paddingBottom:10}]}>
                 <TouchableOpacity style={styles.picker} onPress={this.selectImage.bind(this)}>
                     {/*image的listview*/}
-                    <Image source={require('../../../img/window/jia.png')} style={{marginLeft:20}}/>
+                    <Image source={require('../../../img/window/jia.png')} style={{marginLeft:20,width:70,height:70,}}/>
                 </TouchableOpacity>
                 {/*<ScrollView style={{horizontal:true,flexDirection:'row'}}>*/}
                 <ListView
@@ -943,7 +943,7 @@ const styles=StyleSheet.create({
 
     },
     rowimage:{
-        width:60,height:60,marginTop:10,marginLeft:10,marginRight:10,borderRadius:5,alignSelf:'center'
+        width:70,height:70,marginTop:10,marginLeft:10,marginRight:10,borderRadius:5,alignSelf:'center'
     },
 
 })

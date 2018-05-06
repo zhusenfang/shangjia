@@ -45,10 +45,26 @@ export default class YiChangOrder extends Component {
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', this._androidBack);
         postFetch(API.YiChangOrder,null,(result)=>{
-            // alert(JSON.stringify(result))
+            //alert(JSON.stringify(result))
+
+            result.data = [
+                {id:1,orderName:'牛排',countdownTime:8000,merchantRestaurantsComment:{serverScore:98,score:97},createTime:'2018/4/28 17:17',imlUrl:'http://imgsrc.baidu.com/imgad/pic/item/9a504fc2d562853574b40c099bef76c6a7ef6346.jpg'},
+                {id:2,orderName:'牛排',countdownTime:8000,merchantRestaurantsComment:{serverScore:98,score:97},createTime:'2018/4/28 17:17',imlUrl:'http://imgsrc.baidu.com/imgad/pic/item/9a504fc2d562853574b40c099bef76c6a7ef6346.jpg'},
+                {id:3,orderName:'牛排',countdownTime:8000,merchantRestaurantsComment:{serverScore:98,score:97},createTime:'2018/4/28 17:17',imlUrl:'http://imgsrc.baidu.com/imgad/pic/item/9a504fc2d562853574b40c099bef76c6a7ef6346.jpg'},
+                {id:4,orderName:'牛排',countdownTime:8000,merchantRestaurantsComment:{serverScore:98,score:97},createTime:'2018/4/28 17:17',imlUrl:'http://imgsrc.baidu.com/imgad/pic/item/9a504fc2d562853574b40c099bef76c6a7ef6346.jpg'},
+                {id:5,orderName:'牛排',countdownTime:8000,merchantRestaurantsComment:{serverScore:98,score:97},createTime:'2018/4/28 17:17',imlUrl:'http://imgsrc.baidu.com/imgad/pic/item/9a504fc2d562853574b40c099bef76c6a7ef6346.jpg'},
+
+            ];
+
             if(result.status==1){
                 this.setState({
                dataSource:this.state.dataSource.cloneWithRows(result.data)
+                })
+            }
+            else
+            {
+                this.setState({
+                    dataSource:this.state.dataSource.cloneWithRows(result.data)
                 })
             }
         })
@@ -68,7 +84,8 @@ export default class YiChangOrder extends Component {
                 <Image source={{uri:rowData.imlUrl}} style={{width:45,height:45,borderRadius:5,marginLeft:20}}/>
                 <View style={yichangstyle.items}>
                     {/*<Text>{rowData.consignee}</Text>*/}
-                    <Text style={comstyle.text}>{rowData.orderName}</Text>
+                    <Text style={[comstyle.text,{marginBottom:8,paddingLeft:0,}]}>{rowData.orderName}</Text>
+                    <Text style={{fontSize:12,color:'#b2b2b2'}}>不想买了</Text>
 
                 </View>
 
@@ -102,20 +119,22 @@ const yichangstyle=StyleSheet.create({
     },
     items:{
         flexDirection:'column',
-        alignItems:"center",
+        alignItems:"flex-start",
         marginLeft:10
     },
     timeview:{
         justifyContent:'flex-end',
         flexDirection:'row',
+        alignItems:'flex-start',
         marginRight:20
+
     },
     apptime:{
         fontSize:10,
         color:'#B2B2B2',
-        // marginRight:20
-        fontFamily:'FZLTXHK--GBK1-0',
+         marginTop:-20,
+       //s fontFamily:'FZLTXHK--GBK1-0',
         letterSpacing:0.01,
-        lineHeight:10
+        //lineHeight:10
     },
 })

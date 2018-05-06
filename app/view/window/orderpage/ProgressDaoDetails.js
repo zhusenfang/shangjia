@@ -20,6 +20,9 @@ import {API,postFetch} from '../../../common/GConst'
 import Toast from "react-native-easy-toast";
 import SearchPage from '../../SearchPage'
 import OrderPage from '../../OrderPage'
+
+
+import ProgressRefuseOrder from './ProgressRefuseOrder'
 import {Container, Tab, Tabs,TabHeading} from 'native-base';
 import MyTimer from '../../../common/MyTimer'
 // var TimerMixin=require('react-timer-mixin');
@@ -107,7 +110,8 @@ export default class ProgressDaoDetails extends Component {
             <View style={styles.contain}>
                 <ScrollView style={{width:Contants.Screen.width}} >
                     <View style={styles.top}>
-                        <TouchableOpacity style={[styles.da,{borderColor:'#e5e5e5',}]} onPress={()=>{
+                        <TouchableOpacity style={[styles.da,{borderColor:'#e5e5e5',}]}
+                                          onPress={()=>{
                             this.props.navigation.navigate('ProgressRefuseOrder',{data:list})
                         }}>
                             <Text style={[styles.text,{ color:'#282828'}]} onPress={()=>{
